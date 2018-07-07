@@ -1,7 +1,8 @@
 {
-  "main.css": "css/main.c17080f1.css",
-  "main.css.map": "css/main.c17080f1.css.map",
-  "main.js": "js/main.db579ebe.js",
-  "main.js.map": "js/main.db579ebe.js.map",
-  "media/logo.svg": "media/logo.5d5d9eef.svg"
+  "RegisterPage.js": "js/RegisterPage.js",
+  "RegisterPage.js.map": "js/RegisterPage.js.map",
+  "polyfills.js": "js/polyfills.js",
+  "polyfills.js.map": "js/polyfills.js.map",
+  "vendors.js": "js/vendors.js",
+  "vendors.js.map": "js/vendors.js.map"
 }

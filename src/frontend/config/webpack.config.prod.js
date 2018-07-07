@@ -13,7 +13,7 @@ const getClientEnvironment = require('./env');
 const BundleTracker = require('webpack-bundle-tracker');
 const publicPath = '/static/bundles/';
 const cssFilename = 'css/[name].[contenthash:8].css';
-
+console.log(paths);
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 // const publicPath = paths.servedPath;
@@ -51,21 +51,33 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
 module.exports = {
+  context: __dirname,
   // Don't attempt to continue if there are any errors.
   bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: {
+    polyfills: require.resolve('./polyfills'),
+    RegisterPage: paths.registerIndexJs,
+    vendors: ['react']
+  },
+  /*
+  entry: [
+    require.resolve('./polyfills'),
+    paths.appIndexJs,
+    paths.registerIndexJs
+  ],
+  */
   output: {
     // The build folder.
     path: paths.appBuild,
     // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
-    filename: 'js/[name].[chunkhash:8].js',
-    chunkFilename: 'js/[name].[chunkhash:8].chunk.js',
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[name].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -99,7 +111,13 @@ module.exports = {
       // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
       // please link the files into your node_modules/ and let module-resolution kick in.
       // Make sure your source files are compiled, as they will not be processed in any way.
-      new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])
+      //new webpack.HotModuleReplacementPlugin(),
+      new webpack.ProvidePlugin({
+        Promise: 'es6-promise', // Thanks Aaron (https://gist.github.com/Couto/b29676dd1ab8714a818f#gistcomment-1584602)
+        fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+      }),
+      new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
+      new webpack.NoErrorsPlugin()
     ]
   },
   module: {
