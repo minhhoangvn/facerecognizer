@@ -1,4 +1,5 @@
-{% load render_bundle from webpack_loader %}
+{% load render_bundle from webpack_loader %} {% load staticfiles %} {% load i18n %} {% load l10n %}
+
 <!DOCTYPE html>
 <html>
 
@@ -12,7 +13,7 @@
     <h1>This is sample Title of Django</h1>
     <div id="root">
     </div>
-    {% render_bundle 'main' %}
+    {% render_bundle 'main' %} {% render_bundle 'register' %} {% render_bundle 'vendors' %}
 </body>
 
 </html>
