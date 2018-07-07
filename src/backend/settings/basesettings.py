@@ -36,7 +36,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'minhhoang.urls'
+ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
     {
@@ -66,7 +66,7 @@ STATICFILES_FINDERS = [
 STATIC_ROOT = os.path.join(BASE_DIR, '..', "assets")
 STATIC_URL = '/static/'
 
-WSGI_APPLICATION = 'minhhoang.wsgi.application'
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 # Database

@@ -3,8 +3,8 @@ import os
 import sys
 
 ENV = {
-    "DEV": "minhhoang.settings.devsettings",
-    "PROD": "minhhoang.settings.prodsettings"
+    "DEV": "backend.settings.devsettings",
+    "PROD": "backend.settings.prodsettings"
 }
 
 
