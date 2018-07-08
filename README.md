@@ -24,17 +24,14 @@ npm install
 
 Firstly, you need to setup the token.py module. Contact our contributors for the setup guideline.
 
-Start Backend server:
+Start Application with rebuild all frontend:
+```bash
+# at src folder
+python manage.py runserver react
+```
+
+Start Application without rebuild all frontend:
 ```bash
 # at src folder
 python manage.py runserver
 ```
-
-Start Front-end server:
-
-```bash
-# at frontend folder
-npm start
-```
-
-
