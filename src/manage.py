@@ -14,8 +14,16 @@ def set_run_env(env):
                           ENV.get(env))
 
 
+def run_build_frontend():
+    project_root = os.getcwd()
+    os.chdir(os.path.join(project_root, 'frontend'))
+    os.system("npm run build")
+    os.chdir(project_root)
+
+
 if __name__ == "__main__":
     set_run_env(os.getenv('ENV', 'PROD'))
+    run_build_frontend()
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
