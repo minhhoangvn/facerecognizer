@@ -6,15 +6,17 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Minh Hoang</title>
+    <title>Minh Hoang Test</title>
+    <script async src="{% static 'bundles/js/polyfills.js' %}"></script>
 </head>
 
 <body>
-    <h1>This is sample Title of Django Index HTML</h1>
+    <h1>This is sample Title of Django Base HTML</h1>
     <h2>Test with UWSGI and Django</h2>
+    <h3>Test HTML</h3>
     <div id="root">
     </div>
-    {% render_bundle 'main' %} {% render_bundle 'register' %} {% render_bundle 'vendors' %}
+
 </body>
 
 </html>
