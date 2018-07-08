@@ -19,10 +19,10 @@ def startup_background_process(args):
 
 
 def set_run_env():
-    run_envronment = os.getenv('ENV', 'PROD')
-    print("Run application in {0}".format(run_envronment))
+    run_environment = os.getenv('ENV', 'PROD')
+    print("Run application in {0}".format(run_environment))
     os.environ.setdefault("DJANGO_SETTINGS_MODULE",
-                          ENV.get(run_envronment))
+                          ENV.get(run_environment))
 
 
 def run_build_frontend():
