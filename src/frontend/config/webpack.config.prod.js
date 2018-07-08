@@ -12,7 +12,7 @@ const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const BundleTracker = require('webpack-bundle-tracker');
 const publicPath = '/static/bundles/';
-const cssFilename = 'css/[name].[contenthash:8].css';
+const cssFilename = 'css/[name].css';
 console.log(paths);
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
