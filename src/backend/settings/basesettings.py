@@ -7,7 +7,6 @@ import os
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['13.229.247.183', '0.0.0.0', 'localhost', '127.0.0.1']
 

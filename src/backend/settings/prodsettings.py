@@ -1,5 +1,7 @@
 from .basesettings import *
 import os
+
+DEBUG = False
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'bundles/',
