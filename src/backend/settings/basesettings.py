@@ -59,7 +59,9 @@ TEMPLATES = [
 ]
 
 STATICFILES_DIRS = [
+    ('admin', os.path.join(BASE_DIR, '..', "assets", 'admin')),
     ('bundles', os.path.join(BASE_DIR, '..', "assets", 'bundles')),
+    ('rest_framework', os.path.join(BASE_DIR, '..', "assets", 'rest_framework')),
 ]
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -105,7 +107,5 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = "register.UserProfile"
