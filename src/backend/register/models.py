@@ -11,9 +11,10 @@ class UserProfile(AbstractUser):
     objects = UserManager()
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
+    REQUIRED_FIELDS = ['email', 'password', 'username']
 
     class Meta:
-        ordering = ['username']
+        ordering = ['username', 'email']
         db_table = 'tlt_user'
         indexes = [
             models.Index(fields=['email'], name='email_idx'),
