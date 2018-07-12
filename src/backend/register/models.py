@@ -4,7 +4,13 @@ from django.conf import settings
 
 
 class UserProfileManager(UserManager):
-    pass
+    def create_user(self, username, email, password, **extra_fields):
+        UserManager.create_user(self, username=username,
+                                email=email, password=password, **extra_fields)
+
+    def create_superuser(self, username, email, password, **extra_fields):
+        UserManager.create_superuser(self, username=username,
+                                     email=email, password=password, **extra_fields)
 
 
 class UserProfile(AbstractUser):
