@@ -11,7 +11,7 @@ class UserProfile(AbstractUser):
     objects = UserManager()
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
-    REQUIRED_FIELDS = ['email', 'password', 'username']
+    REQUIRED_FIELDS = ['email', 'password']
 
     class Meta:
         ordering = ['username', 'email']
