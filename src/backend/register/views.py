@@ -7,9 +7,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework import status
-
+from rest_framework.permissions import AllowAny
 
 class UserList(APIView):
+    permission_classes = (AllowAny,)
     """
     List all users, or create a new user.
     """
@@ -36,6 +37,7 @@ class UserDetail(APIView):
     """
     Retrieve, update or delete a user instance.
     """
+    permission_classes = (AllowAny,)
 
     def get_object(self, pk):
         try:

@@ -1,4 +1,4 @@
-from .token import *
+from .token import DATABASES, SECRET_KEY, BASE_DIR, ROOT_DIR
 import os
 
 # Quick-start development settings - unsuitable for production
@@ -44,7 +44,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, '..', 'templates')
+            os.path.join(ROOT_DIR, 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -58,19 +58,47 @@ TEMPLATES = [
     },
 ]
 
+STATIC_ROOT = os.path.join(ROOT_DIR, "assets")
+STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    ('admin', os.path.join(BASE_DIR, '..', "assets", 'admin')),
-    ('bundles', os.path.join(BASE_DIR, '..', "assets", 'bundles')),
-    ('rest_framework', os.path.join(BASE_DIR, '..', "assets", 'rest_framework')),
+    ('admin',os.path.join(ROOT_DIR, "assets", 'admin')),
+    ('bundles',os.path.join(ROOT_DIR, "assets", 'bundles')),
+    ('rest_framework',os.path.join(ROOT_DIR, "assets", 'rest_framework'))
 ]
+
+(lambda static_folders: [os.makedirs(folder[1]) for folder in static_folders if os.path.exists(
+    folder[1]) is False])(STATICFILES_DIRS)
+
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder']
 
-STATIC_ROOT = os.path.join(BASE_DIR, '..', "assets")
-STATIC_URL = '/static/'
-
 WSGI_APPLICATION = 'backend.wsgi.application'
+
+# RestFull API config
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+
+    ],
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    )
+}
+
+# URL config
+
+ROOT_URLCONF = 'backend.urls'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
