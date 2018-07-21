@@ -1,4 +1,11 @@
 {% extends "base.html" %} {% load render_bundle from webpack_loader %} {% load staticfiles %} {% load i18n %} {% load l10n
 %} {% block main %}
-<div>Sample Extends</div>
+<style>
+    body {
+        background-image: url("/static/register/media/register-1.jpg");
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+</style>
+<div class="content">Sample Extends</div>
 {% endblock %}

@@ -62,9 +62,10 @@ STATIC_ROOT = os.path.join(ROOT_DIR, "assets")
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    ('admin',os.path.join(ROOT_DIR, "assets", 'admin')),
-    ('bundles',os.path.join(ROOT_DIR, "assets", 'bundles')),
-    ('rest_framework',os.path.join(ROOT_DIR, "assets", 'rest_framework'))
+    ('admin', os.path.join(ROOT_DIR, "assets", 'admin')),
+    ('bundles', os.path.join(ROOT_DIR, "assets", 'bundles')),
+    ('register', os.path.join(ROOT_DIR, "assets", 'register')),
+    ('rest_framework', os.path.join(ROOT_DIR, "assets", 'rest_framework'))
 ]
 
 (lambda static_folders: [os.makedirs(folder[1]) for folder in static_folders if os.path.exists(
