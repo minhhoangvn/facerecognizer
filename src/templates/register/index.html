@@ -2,10 +2,11 @@
 %} {% block main %}
 <style>
     body {
-        background-image: url("/static/register/media/register-1.jpg");
+        background-image: url("{{background_image}}");
         background-size: 100%;
         background-repeat: no-repeat;
     }
 </style>
-<div class="content">Sample Extends</div>
-{% endblock %}
+<div id="root" class="content">Sample Extends
+    <div id="dice" />
+</div> {% render_bundle 'register' %} {% render_bundle 'vendors' %} {% endblock %}

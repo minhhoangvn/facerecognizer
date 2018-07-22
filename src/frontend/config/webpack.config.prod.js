@@ -13,7 +13,6 @@ const getClientEnvironment = require('./env');
 const BundleTracker = require('webpack-bundle-tracker');
 const publicPath = '/static/bundles/';
 const cssFilename = 'css/[name].css';
-console.log(paths);
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 // const publicPath = paths.servedPath;
@@ -165,7 +164,8 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              compact: true
+              compact: true,
+              plugins: ['transform-decorators-legacy']
             }
           },
           // The notation here is somewhat confusing.
