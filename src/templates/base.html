@@ -1,22 +1,22 @@
 {% load render_bundle from webpack_loader %} {% load staticfiles %} {% load i18n %} {% load l10n %}
 
 <!DOCTYPE html>
-<html>
+<html class="no-js" lang="en">
+
+
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Minh Hoang Test</title>
+    <meta charset="utf-8" />
+    <meta name="referrer" content="origin-when-crossorigin" id="meta_referrer" />
+    <meta name="author" content="Minh Hoang">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognizer</title>
     <script async src="{% static 'bundles/js/polyfills.js' %}"></script>
 </head>
 
 <body>
-    <h1>This is sample Title of Django Base HTML</h1>
-    <h2>Test with UWSGI and Django</h2>
-    <h3>Test HTML</h3>
-    <div id="root">
-    </div>
-
+    <h1>Wellcome to Face Recoginizer</h1> {%block main%} {% endblock %}
 </body>
 
 </html>

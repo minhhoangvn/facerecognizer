@@ -1,22 +1,12 @@
-{% load render_bundle from webpack_loader %} {% load staticfiles %} {% load i18n %} {% load l10n %}
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Minh Hoang Test</title>
-    <script async src="{% static '/js/polyfills.js' %}"></script>
-</head>
-
-<body>
-    <h1>This is sample Title of Django Register HTML</h1>
-    <h2>Test with UWSGI and Django</h2>
-    <h3>Test HTML</h3>
-    <div id="root">
-    </div>
-
-</body>
-
-</html>
+{% extends "base.html" %} {% load render_bundle from webpack_loader %} {% load staticfiles %} {% load i18n %} {% load l10n
+%} {% block main %}
+<style>
+    body {
+        background-image: url("{{background_image}}");
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+</style>
+<div id="root" class="content">Sample Extends
+    <div id="dice" />
+</div> {% render_bundle 'register' %} {% render_bundle 'vendors' %} {% endblock %}

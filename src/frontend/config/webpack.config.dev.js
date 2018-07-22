@@ -145,7 +145,8 @@ module.exports = {
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
-              cacheDirectory: true
+              cacheDirectory: true,
+              plugins: ['transform-decorators-legacy']
             }
           },
           // "postcss" loader applies autoprefixer to our CSS.
@@ -216,12 +217,12 @@ module.exports = {
       path: paths.statsRoot,
       filename: 'webpack-stats.dev.json'
     }),
-    new InterpolateHtmlPlugin(env.raw),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml
     }),
+    new InterpolateHtmlPlugin(env.raw),
     // Add module names to factory functions so they appear in browser profiler.
     new webpack.NamedModulesPlugin(),
     // Makes some environment variables available to the JS code, for example:
