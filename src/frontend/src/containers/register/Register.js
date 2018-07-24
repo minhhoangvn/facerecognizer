@@ -3,113 +3,95 @@ import ReactDOM from 'react-dom';
 import { observable, computed, action } from 'mobx';
 import { observer } from 'mobx-react';
 import $ from 'jquery';
-const _ = require('lodash');
-class UserStore {
-  //Observable values can be watched by Observers
-  @observable users = [];
-  @observable selectedUser = {};
-  @computed
-  get selectedId() {
-    return this.selectedUser.id;
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { MenuItem, TextField, Button } from '@material-ui/core';
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200
+  },
+  menu: {
+    width: 200
   }
+});
 
-  constructor() {
-    //Managing Async tasks like ajax calls with Mobx actions
-    $.get('https://jsonplaceholder.typicode.com/users').then(users => {
-      this.setUsers(users);
+class RegisterForm extends React.Component {
+  state = {};
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value
     });
-  }
-  //In strict mode, only actions can modify mobx state
-  @action
-  setUsers(users) {
-    this.users = [...users];
-  }
-  @action
-  selectUser(user) {
-    this.selectedUser = user;
-  }
-}
-
-//Child Component / Profile (Functional Component)
-const Profile = ({ onClick, label, selected }) => {
-  const classes = selected ? 'bold' : '';
-  return (
-    <li onClick={onClick} className={classes}>
-      <i className="fa fa-user" /> {label}
-    </li>
-  );
-};
-
-//Child Component /  (Functional Component)
-const Selection = ({ user }) => {
-  return (
-    <ul>
-      <li>
-        <i className="fa fa-book fa-fw" /> Name: {user.name}
-      </li>
-      <li>
-        <i className="fa fa-user fa-fw" /> Username: {user.username}
-      </li>
-      <li>
-        <i className="fa fa-phone fa-fw" /> Phone: {user.phone}
-      </li>
-      <li>
-        <i className="fa fa-envelope fa-fw" /> Email:
-        <a href={'mailto:' + user.email}>{user.email}</a>
-      </li>
-    </ul>
-  );
-};
-
-//Main Component / Parent Component / App (Class Based Component)
-//Observers can react (ba dum tss) to changes in observables
-@observer
-class App extends React.Component {
-  renderSelection() {
-    if (_.isEmpty(this.props.store.selectedUser)) return <noscript />;
-    return (
-      <div className="selection">
-        <Selection user={this.props.store.selectedUser} />
-        <button
-          onClick={() => {
-            this.props.store.selectUser({});
-          }}
-        >
-          Close Profile
-        </button>
-      </div>
-    );
-  }
-
-  renderProfiles() {
-    return this.props.store.users.map(user => {
-      return (
-        <Profile
-          selected={user.id === this.props.store.selectedId}
-          key={user.id}
-          label={user.name}
-          onClick={() => {
-            this.props.store.selectUser(user);
-          }}
-        />
-      );
-    });
-  }
+  };
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <div>
-        <h3>Employee Directory</h3>
-        {this.renderSelection()}
-        {this.renderProfiles()}
-      </div>
+      <form className={classes.container} noValidate autoComplete="off">
+        <TextField
+          required
+          id="user-input"
+          label="UserName"
+          className={classes.textField}
+          autoComplete="username"
+          margin="normal"
+          placeholder="Input your username"
+        />
+        <TextField
+          required
+          id="password-input"
+          label="Password"
+          className={classes.textField}
+          type="password"
+          autoComplete="current-password"
+          margin="normal"
+          placeholder="Input your password"
+        />
+        <TextField
+          required
+          id="email-input"
+          label="Email"
+          className={classes.textField}
+          type="email"
+          autoComplete="email"
+          margin="normal"
+          placeholder="Input your email"
+        />
+        <TextField
+          required
+          id="firstname-input"
+          label="First Name"
+          className={classes.textField}
+          type="text"
+          autoComplete="given-name"
+          margin="normal"
+          placeholder="Input your first-name"
+        />
+        <TextField
+          required
+          id="lastname-input"
+          label="Last Name"
+          className={classes.textField}
+          type="text"
+          autoComplete="family-name"
+          margin="normal"
+          placeholder="Input your last-name"
+        />
+      </form>
     );
   }
 }
 
-/*Implementation Details*/
-//Creating a new Mobx Store Object for our App
-const Store = new UserStore();
+RegisterForm.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
-//Rendering the app to the container and passing in the Mobx Store
-ReactDOM.render(<App store={Store} />, document.querySelector('#container'));
+const Register = withStyles(styles)(RegisterForm);
+export { Register };

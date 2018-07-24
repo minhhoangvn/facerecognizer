@@ -1,3 +1,5 @@
-const RegisterPage = require('./Register').default;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Register } from './Register';
 
-//const page = new RegisterPage();
+ReactDOM.render(<Register />, document.querySelector('#container'));
