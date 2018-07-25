@@ -1,15 +1,21 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { observable, computed, action } from 'mobx';
-import { observer } from 'mobx-react';
-import $ from 'jquery';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { MenuItem, TextField, Button } from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import { Button } from '@material-ui/core';
 const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap'
+  },
+  button: {
+    margin: theme.spacing.unit,
+    width: 100,
+    backgroundColor: '#37cc57',
+    fontSize: '0.8em',
+    fontWeight: 900,
+    color: '#1b2363'
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -84,6 +90,25 @@ class RegisterForm extends React.Component {
           margin="normal"
           placeholder="Input your last-name"
         />
+        <TextField
+          id="location-input"
+          label="Location"
+          className={classes.textField}
+          type="text"
+          margin="normal"
+          placeholder="Input your location"
+        />
+        <TextField
+          id="birth-input"
+          label="Birthday"
+          className={classes.textField}
+          type="text"
+          margin="normal"
+          placeholder="Input your birthday"
+        />
+        <Button variant="flat" size="large" className={classes.button}>
+          Register Account
+        </Button>
       </form>
     );
   }

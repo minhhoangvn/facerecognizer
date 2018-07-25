@@ -6,8 +6,93 @@
         background-size: 100%;
         background-repeat: no-repeat;
     }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    h3 {
+        color: #fff;
+        text-align: center;
+        text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    li {
+        cursor: pointer;
+        list-style: none;
+        display: block;
+        border: 1px solid black;
+        background: #fff;
+        margin: 1% 5%;
+        padding: 1%;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    li:hover {
+        background: beige;
+    }
+
+    button {
+        -webkit-appearance: none;
+        background: white;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 0.5em;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+        display: inline-block;
+        margin-right: 5%;
+        margin-bottom: 25px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        color: #fff;
+        background: rgb(255, 85, 0);
+    }
+
+    button:active {
+        box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    button:focus {
+        outline: 0;
+    }
+
+    .selection {
+        text-align: right;
+    }
+
+    .fa {
+        margin-right: 5px;
+    }
+
+    .selection ul {
+        border: 1px solid black;
+        background: #fff;
+        margin: 1% 5%;
+        padding: 2% 4%;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .selection li {
+        text-align: left;
+        cursor: auto;
+        display: block;
+        border: none;
+        background: #fff;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .bold,
+    .bold:hover {
+        font-weight: bolder;
+        color: #fff;
+        background: rgb(255, 85, 0);
+    }
 </style>
-<div id="root" class="content">Sample Extends
-    <div id="dice" />
-    <div id="container" style="background-color: white;" />
+<div id="root" class="content">
+    <div id="dice"></div>
+    <div id="container" style="background-color: white;"></div>
 </div> {% render_bundle 'register' %} {% render_bundle 'vendors' %} {% endblock %}
