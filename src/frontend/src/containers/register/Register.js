@@ -2,20 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
-import {
-  Grid,
-  GridList,
-  GridListTile,
-  GridListTileBar
-} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import KeyboardVoiceICon from '@material-ui/icons/KeyboardVoice';
-import Icon from '@material-ui/core/Icon';
+import FormLabel from '@material-ui/core/FormLabel';
 
 /**
  * Register Page
@@ -67,7 +59,14 @@ class RegisterForm extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <form className={classes.container} autoComplete="off">
+      <form
+        className={classes.container}
+        method="GET"
+        action="/debug/debug"
+        noValidate
+        autoComplete="off"
+      >
+        <FormLabel component="label">Register Account</FormLabel>
         <Grid
           className={classes.gridLayout}
           item
@@ -143,6 +142,17 @@ class RegisterForm extends React.Component {
               className={classNames(classes.leftIcon, classes.iconSmall)}
             />
             Register Account
+          </Button>
+          <Button
+            type="button"
+            variant="contained"
+            size="small"
+            className={classes.button}
+          >
+            <DeleteIcon
+              className={classNames(classes.leftIcon, classes.iconSmall)}
+            />
+            Clear
           </Button>
         </Grid>
       </form>
