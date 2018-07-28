@@ -87,3 +87,4 @@ celerybeat-schedule
 /site
 .mypy_cache/
 
+migrations

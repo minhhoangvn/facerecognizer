@@ -23,8 +23,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'webpack_loader',
-    'backend.register'
-
+    'backend.register',
+    'backend.collection',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +134,8 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_USER_MODEL = "register.UserProfile"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+
+DEBUG = True
