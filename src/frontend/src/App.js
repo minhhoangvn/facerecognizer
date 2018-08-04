@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import { AppRoute } from './components/route/AppRoute';
+import { RegistrationComponent } from './containers/register/Register';
 const Home = () => (
   <div>
     <h2>Home</h2>
@@ -45,39 +46,6 @@ const Topics = ({ match }) => (
   </div>
 );
 
-const BasicExample = () => (
-  <BrowserRouter>
-    <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-        <li>
-          <Link to="/topics">Topics</Link>
-        </li>
-      </ul>
-
-      <hr />
-
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/topics" component={Topics} />
-    </div>
-  </BrowserRouter>
-);
-// class MainLayout extends React.Component {
-//   render() {
-//     const { children } = this.props;
-//     return (
-//       <div className="main-layout">
-//         <div className="content">{children}</div>
-//       </div>
-//     );
-//   }
-// }
 const MainLayout = props => {
   return (
     <div className="main-layout">
@@ -86,13 +54,54 @@ const MainLayout = props => {
   );
 };
 
-// <Router>
-// <div>
-//   <AppRoute component={Home} layout={MainLayout} path="/" />
-//   <AppRoute component={About} layout={MainLayout} />
-//   <AppRoute component={Topics} layout={MainLayout} />
-// </div>
-// </Router>
+const NavigationComponent = () => {
+  return (
+    <ul>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/about">About</Link>
+      </li>
+      <li>
+        <Link to="/topics">Topics</Link>
+      </li>
+      <li>
+        <Link to="/register">Register</Link>
+      </li>
+    </ul>
+  );
+};
+const Router = props => {
+  return (
+    <BrowserRouter>
+      <div>
+        <NavigationComponent />
+        <hr />
+        <AppRoute exact={true} component={Home} layout={MainLayout} path="/" />
+        <AppRoute
+          exact={false}
+          component={About}
+          layout={MainLayout}
+          path="/about"
+        />
+        <AppRoute
+          exact={false}
+          component={Topics}
+          layout={MainLayout}
+          path="/topics"
+        />
+        <AppRoute
+          exact={false}
+          component={Topics}
+          layout={RegistrationComponent}
+          path="/register"
+        />
+      </div>
+    </BrowserRouter>
+  );
+};
+
 class App extends Component {
   render() {
     return (
@@ -101,41 +110,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <BrowserRouter>
-          <div>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/topics">Topics</Link>
-              </li>
-            </ul>
-
-            <hr />
-            <AppRoute
-              exact={true}
-              component={Home}
-              layout={MainLayout}
-              path="/"
-            />
-            <AppRoute
-              exact={false}
-              component={About}
-              layout={MainLayout}
-              path="/about"
-            />
-            <AppRoute
-              exact={false}
-              component={Topics}
-              layout={MainLayout}
-              path="/topics"
-            />
-          </div>
-        </BrowserRouter>
+        <Router />
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>

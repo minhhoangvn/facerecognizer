@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { WrappedRegistrationForm } from './Register';
+import { RegistrationComponent } from './Register';
 
 ReactDOM.render(
   <div>
-    <WrappedRegistrationForm />
+    <RegistrationComponent />
   </div>,
   document.querySelector('#container')
 );

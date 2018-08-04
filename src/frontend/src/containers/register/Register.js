@@ -1,195 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-// import { withStyles } from '@material-ui/core/styles';
-// import TextField from '@material-ui/core/TextField';
-// import { Button } from '@material-ui/core';
-// import { Grid } from '@material-ui/core';
-// import SaveIcon from '@material-ui/icons/Save';
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import FormLabel from '@material-ui/core/FormLabel';
 import 'antd/dist/antd.css';
 import {
   Form,
   Input,
   Tooltip,
   Icon,
-  Cascader,
   Select,
   Row,
   Col,
   Checkbox,
-  Button,
-  AutoComplete
+  Button
 } from 'antd';
-// import 'antd/lib/button/style/css';
-// import 'antd/lib/form/style/css';
-// import 'antd/lib/input/style/css';
-// import 'antd/lib/tooltip/style/css';
-// import 'antd/lib/icon/style/css';
-// import 'antd/lib/cascader/style/css';
-// import 'antd/lib/select/style/css';
-// import 'antd/lib/row/style/css';
-// import 'antd/lib/col/style/css';
-// import 'antd/lib/checkbox/style/css';
-// import 'antd/lib/auto-complete/style/css';
-/**
- * Register Page
- */
-
-// const styles = theme => ({
-//   container: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//     fontSize: '1.0em'
-//   },
-//   button: {
-//     margin: theme.spacing.unit,
-//     width: 200
-//   },
-//   textField: {
-//     marginLeft: theme.spacing.unit,
-//     marginRight: theme.spacing.unit,
-//     width: 200,
-//     fontSize: '0.8em'
-//   },
-//   menu: {
-//     fontSize: '0.8em',
-//     width: 200
-//   },
-//   leftIcon: {
-//     marginRight: theme.spacing.unit
-//   },
-//   rightIcon: {
-//     marginLeft: theme.spacing.unit
-//   },
-//   iconSmall: {
-//     fontSize: 20
-//   },
-//   gridLayout: {
-//     marginLeft: '30%',
-//     padding: 10
-//   }
-// });
-
-// class RegisterForm extends React.Component {
-//   state = {};
-
-//   handleChange = name => event => {
-//     this.setState({
-//       [name]: event.target.value
-//     });
-//   };
-
-//   render() {
-//     const { classes } = this.props;
-//     return (
-//       <form
-//         className={classes.container}
-//         method="GET"
-//         action="/debug/debug"
-//         noValidate
-//         autoComplete="off"
-//       >
-//         <FormLabel component="label">Register Account</FormLabel>
-//         <Grid
-//           className={classes.gridLayout}
-//           item
-//           xs={4}
-//           spacing={8}
-//           alignContent={'space-around'}
-//           container={true}
-//         >
-//           <TextField
-//             required
-//             id="user-input"
-//             label="UserName"
-//             className={classes.textField}
-//             autoComplete="username"
-//             margin="normal"
-//             placeholder="Input your username"
-//           />
-//           <TextField
-//             required
-//             id="password-input"
-//             label="Password"
-//             className={classes.textField}
-//             type="password"
-//             autoComplete="current-password"
-//             margin="normal"
-//             placeholder="Input your password"
-//           />
-//           <TextField
-//             required
-//             id="email-input"
-//             label="Email"
-//             className={classes.textField}
-//             type="email"
-//             autoComplete="email"
-//             margin="normal"
-//             placeholder="Input your email"
-//           />
-//           <TextField
-//             required
-//             id="firstname-input"
-//             label="First Name"
-//             className={classes.textField}
-//             type="text"
-//             autoComplete="given-name"
-//             margin="normal"
-//             placeholder="Input your first-name"
-//           />
-//           <TextField
-//             required
-//             id="lastname-input"
-//             label="Last Name"
-//             className={classes.textField}
-//             type="text"
-//             autoComplete="family-name"
-//             margin="normal"
-//             placeholder="Input your last-name"
-//           />
-//           <TextField
-//             id="location-input"
-//             label="Location"
-//             className={classes.textField}
-//             type="text"
-//             margin="normal"
-//             placeholder="Input your location"
-//           />
-//           <Button
-//             type="submit"
-//             variant="contained"
-//             size="small"
-//             className={classes.button}
-//           >
-//             <SaveIcon
-//               className={classNames(classes.leftIcon, classes.iconSmall)}
-//             />
-//             Register Account
-//           </Button>
-//           <Button
-//             type="button"
-//             variant="contained"
-//             size="small"
-//             className={classes.button}
-//           >
-//             <DeleteIcon
-//               className={classNames(classes.leftIcon, classes.iconSmall)}
-//             />
-//             Clear
-//           </Button>
-//         </Grid>
-//       </form>
-//     );
-//   }
-// }
-
-// RegisterForm.propTypes = {
-//   classes: PropTypes.object.isRequired
-// };
-
-// const Register = withStyles(styles)(RegisterForm);
+import ReCAPTCHA from 'react-google-recaptcha';
 
 /**
  * Form ant library
@@ -197,47 +19,12 @@ import {
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
-
-const residences = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men'
-          }
-        ]
-      }
-    ]
-  }
-];
 
 class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
-    autoCompleteResult: []
+    autoCompleteResult: [],
+    captcha: {}
   };
 
   handleSubmit = e => {
@@ -285,7 +72,6 @@ class RegistrationForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult } = this.state;
 
     const formItemLayout = {
       labelCol: {
@@ -310,17 +96,12 @@ class RegistrationForm extends React.Component {
       }
     };
     const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '86'
+      initialValue: '84'
     })(
       <Select style={{ width: 70 }}>
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
+        <Option value="84">+84</Option>
       </Select>
     );
-
-    const websiteOptions = autoCompleteResult.map(website => (
-      <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-    ));
 
     return (
       <Row>
@@ -387,18 +168,6 @@ class RegistrationForm extends React.Component {
                 ]
               })(<Input />)}
             </FormItem>
-            <FormItem {...formItemLayout} label="Habitual Residence">
-              {getFieldDecorator('residence', {
-                initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-                rules: [
-                  {
-                    type: 'array',
-                    required: true,
-                    message: 'Please select your habitual residence!'
-                  }
-                ]
-              })(<Cascader options={residences} />)}
-            </FormItem>
             <FormItem {...formItemLayout} label="Phone Number">
               {getFieldDecorator('phone', {
                 rules: [
@@ -408,19 +177,6 @@ class RegistrationForm extends React.Component {
                 <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
               )}
             </FormItem>
-            <FormItem {...formItemLayout} label="Website">
-              {getFieldDecorator('website', {
-                rules: [{ required: true, message: 'Please input website!' }]
-              })(
-                <AutoComplete
-                  dataSource={websiteOptions}
-                  onChange={this.handleWebsiteChange}
-                  placeholder="website"
-                >
-                  <Input />
-                </AutoComplete>
-              )}
-            </FormItem>
             <FormItem
               {...formItemLayout}
               label="Captcha"
@@ -428,17 +184,14 @@ class RegistrationForm extends React.Component {
             >
               <Row gutter={8}>
                 <Col span={12}>
-                  {getFieldDecorator('captcha', {
-                    rules: [
-                      {
-                        required: true,
-                        message: 'Please input the captcha you got!'
-                      }
-                    ]
-                  })(<Input />)}
-                </Col>
-                <Col span={12}>
-                  <Button>Get captcha</Button>
+                  <ReCAPTCHA
+                    ref="recaptcha"
+                    size="normal"
+                    sitekey="6LfaO2gUAAAAAJYPIH5miKpy0JHTETT1INyg2zFX"
+                    onChange={value => {
+                      console.log('Captcha value:', value);
+                    }}
+                  />
                 </Col>
               </Row>
             </FormItem>
@@ -463,6 +216,6 @@ class RegistrationForm extends React.Component {
   }
 }
 
-const WrappedRegistrationForm = Form.create()(RegistrationForm);
+const RegistrationComponent = Form.create()(RegistrationForm);
 
-export { WrappedRegistrationForm };
+export { RegistrationComponent };
