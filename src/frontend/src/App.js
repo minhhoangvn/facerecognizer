@@ -1,9 +1,12 @@
+import 'antd/dist/antd.css';
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
-import './App.css';
-import { AppRoute } from './components/route/AppRoute';
-import { RegistrationComponent } from './containers/register/Register';
+import { AppRoute, Routers } from './components/route/AppRoute';
+import { RegistrationComponent as Register } from './containers/register/Register';
+import { HeaderComponent } from './containers/header/Header';
+import { FooterComponent } from './containers/footer/Footer';
+import { Layout } from 'antd';
+const { Content } = Layout;
 const Home = () => (
   <div>
     <h2>Home</h2>
@@ -72,51 +75,26 @@ const NavigationComponent = () => {
     </ul>
   );
 };
-const Router = props => {
-  return (
-    <BrowserRouter>
-      <div>
-        <NavigationComponent />
-        <hr />
-        <AppRoute exact={true} component={Home} layout={MainLayout} path="/" />
-        <AppRoute
-          exact={false}
-          component={About}
-          layout={MainLayout}
-          path="/about"
-        />
-        <AppRoute
-          exact={false}
-          component={Topics}
-          layout={MainLayout}
-          path="/topics"
-        />
-        <AppRoute
-          exact={false}
-          component={Topics}
-          layout={RegistrationComponent}
-          path="/register"
-        />
-      </div>
-    </BrowserRouter>
-  );
-};
+const RouterElementList = [
+  { isExact: true, component: Home, layout: MainLayout, path: '/' },
+  { isExact: false, component: About, layout: MainLayout, path: '/about' },
+  { isExact: false, component: Topics, layout: MainLayout, path: '/topics' },
+  { isExact: false, component: Register, layout: MainLayout, path: '/register' }
+];
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <Router />
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>Minh Hoang Test This</p>
-        <p>Change in new file</p>
-      </div>
+      <Layout>
+        <HeaderComponent menu={NavigationComponent} />
+        <Content style={{ padding: '0 50px', marginTop: 64 }}>
+          <Routers
+            appRoute={RouterElementList}
+            navigationComponent={NavigationComponent}
+          />
+        </Content>
+        <FooterComponent />
+      </Layout>
     );
   }
 }
