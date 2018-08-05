@@ -12,7 +12,7 @@ from django.views.generic import TemplateView
 
 
 class RegisterIndex(TemplateView):
-    template_name = 'register/index.html'
+    template_name = 'index.html'
     __background_image = ['/static/register/media/register-1.jpg',
                           '/static/register/media/register-2.jpg',
                           '/static/register/media/register-3.jpg',

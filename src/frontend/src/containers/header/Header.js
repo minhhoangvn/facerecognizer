@@ -5,6 +5,7 @@ import { Layout, Menu } from 'antd';
 const { Header } = Layout;
 const HeaderComponent = props => {
   console.log(props);
+  const navigationComponent = props.menu();
   return (
     <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
       <div className="logo" />
